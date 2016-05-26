@@ -265,7 +265,8 @@ if [[ ! -f "Procfile" ]]; then
     echo "web: $composer_bindir/heroku-$engine-apache2" > Procfile
     notice_inline "No Procfile, using 'web: $composer_bindir/heroku-$engine-apache2'."
 fi
-source $bp_dir/bin/pspell
+
+echo "extension=/app/user/src/pspell/modules/pspell.so" >> /app/.heroku/php/etc/php/php.ini
 
 status "Checking for additional extensions to install..."
 # special treatment for Blackfire; we enable it if we detect a server id and a server token for it
